@@ -16,19 +16,24 @@
 
 <body ng-app="hominysatellite" ng-controller="hominysatelliteCtrl as hominysatellite"
 ng-class="{'with-main-buttons':(view.id=='theflowexchanger' && view.subid=='theflowexchangertemplates') || editFunctionItem || editdeviceicon || setCustomIcon || setDeviceIcon || editcustomicon, 'with-top-bar':view.showMain, 'with-top-bar-small':view.subid=='theflowexchangertemplates' && !vars.template }">
+<form name="mainForm">
 	<div>
-		<input type="number" max="9999" min="0000" step="1" pattern="[0-9]{4}" maxlength="4" minlength="4" ng-model="vars.pincode" ng-change="updatePincode()"/>
+		<input type="text" max="9999" min="0000" step="1" pattern="[0-9]{4}" maxlength="4" minlength="4" ng-model="vars.pincode"/>
+		<button class="block" ng-click="mainForm.$valid ? updatePincode() : null" ng-disabled="!mainForm.$valid">Update pincode</div>
 	</div>
-	<div id="overlay"></div>
+	<!-- <div>		
+		<button ng-click="updatePincode()" >Generate new Keys</div>
+	</div> -->
+</form>
 
-
+<div id="overlay"></div>
 	<script type="text/javascript">
 
-		angular.module('hominysatellite', ['smart-table', 'ngSanitize'])
-			.controller("hominysatelliteCtrl", ['$scope', '$rootScope', '$timeout', '$sanitize', '$compile', function ($scope, $rootScope, $timeout, $sanitize, $compile) {
+		angular.module('hominysatellite', ['smart-table'])
+			.controller("hominysatelliteCtrl", ['$scope', '$rootScope', '$timeout', '$compile', function ($scope, $rootScope, $timeout, $compile) {
 				//let $;
 				var Homey;
-				let vars = $scope.vars = {pincode:undefined};
+				const vars = $scope.vars = {pincode:undefined};
 				$scope.stamp = Date.now();
 
 
@@ -36,10 +41,19 @@ ng-class="{'with-main-buttons':(view.id=='theflowexchanger' && view.subid=='thef
 					Homey = Homey_;
 					$scope.__ = Homey.__;
 
+
+					Homey.ready();
+					Homey.get('pincode', (err, pincode)=> {
+						if(err) return Homey.alert(err);
+						$scope.$apply(()=> {
+							vars.pincode = pincode;
+						});
+					})
+
 				});
 
 				$scope.updatePincode = function() {
-					Homey.set('pincode', vars.pincode );
+					Homey.set('pincode', vars.pincode.toString() );
 				}
 
 			}])			

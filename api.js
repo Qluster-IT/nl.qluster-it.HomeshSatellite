@@ -11,7 +11,8 @@ module.exports = {
     async startFlow({ homey,  body: { name, text, number, boolean } }) {        
         console.log('Start Flow!');//return await homey.drivers.getDriver('virtualdevice').getAdvancedFlowsJSON({ homey,  advancedflowsselected });
     }, 
-    async getAuthorization({ homey,  body: { pincode } }) {        
+    async getAuthorization({ homey,  body: { pincode } }) {
+        if(homey.app.pincode === pincode) return {token:homey.app.token};
         console.log('pincode: ');//return await homey.drivers.getDriver('virtualdevice').getAdvancedFlowsJSON({ homey,  advancedflowsselected });
         console.log(pincode);
     }, 
