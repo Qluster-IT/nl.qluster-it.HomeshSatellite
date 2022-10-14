@@ -31,6 +31,12 @@ module.exports = {
             if(!validateToken(homey, token)) throw new Error('Unauthorized');
             return homey.app.playUrl(url);
         } catch (error) { handleError(this, 'playUrl error: ', error); }
+    },
+    async sayAthom({ homey,  body: { token, text } }) {
+        try {            
+            if(!validateToken(homey, token)) throw new Error('Unauthorized');
+            return homey.speechOutput.say(text);
+        } catch (error) { handleError(this, 'playUrl error: ', error); }
     }
     
 };

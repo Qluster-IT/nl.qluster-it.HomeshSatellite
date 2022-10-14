@@ -1,1 +1,1 @@
-Satellite App to the Hominy Controller
+Satellite App to the BlackWhole Controller

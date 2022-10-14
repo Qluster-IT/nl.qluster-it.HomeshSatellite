@@ -14,7 +14,7 @@
 
 </head>
 
-<body ng-app="hominysatellite" ng-controller="hominysatelliteCtrl as hominysatellite"
+<body ng-app="blackwholesatellite" ng-controller="blackwholesatelliteCtrl as blackwholesatellite"
 ng-class="{'with-main-buttons':(view.id=='theflowexchanger' && view.subid=='theflowexchangertemplates') || editFunctionItem || editdeviceicon || setCustomIcon || setDeviceIcon || editcustomicon, 'with-top-bar':view.showMain, 'with-top-bar-small':view.subid=='theflowexchangertemplates' && !vars.template }">
 <form name="mainForm">
 	<div class="field">
@@ -38,8 +38,8 @@ ng-class="{'with-main-buttons':(view.id=='theflowexchanger' && view.subid=='thef
 <div id="overlay"></div>
 	<script type="text/javascript">
 
-		angular.module('hominysatellite', ['smart-table'])
-			.controller("hominysatelliteCtrl", ['$scope', '$rootScope', '$timeout', '$compile', '$q', function ($scope, $rootScope, $timeout, $compile, $q) {
+		angular.module('blackwholesatellite', ['smart-table'])
+			.controller("blackwholesatelliteCtrl", ['$scope', '$rootScope', '$timeout', '$compile', '$q', function ($scope, $rootScope, $timeout, $compile, $q) {
 				//let $;
 				var Homey;
 				const vars = $scope.vars = {pincode:undefined, token:undefined};

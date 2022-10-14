@@ -1,5 +1,5 @@
 {
-  "id": "nl.qluster-it.HominySatellite",
+  "id": "nl.qluster-it.BlackWholeSatellite",
   "version": "0.0.3",
   "compatibility": ">=5.0.0",
   "sdk": 3,
@@ -7,10 +7,10 @@
     "local"
   ],
   "name": {
-    "en": "Hominy Satellite"
+    "en": "BlackWhole (Satellite)"
   },
   "description": {
-    "en": "Let's you control this Homey by a(nother) Hominy Controller"
+    "en": "Let's you control this Homey by another Homey"
   },
   "category": [
     "appliances"
@@ -46,5 +46,6 @@
       "path": "/playUrl/",
       "public": true
     }
-  }
+  },
+  "brandColor": "#0066a4"
 }
