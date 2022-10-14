@@ -19,19 +19,20 @@ ng-class="{'with-main-buttons':(view.id=='theflowexchanger' && view.subid=='thef
 <form name="mainForm">
 	<div class="field">
 		<div class="field margin-bottom">
-			Here you will find you pincode and token.<br/>
-			The pincode is used during pairing only and will give the Controller this token.<br/>
-			Generating a new Token will require you to repair and reconnected your Controller.
+			The pincode is used only during pairing and will give the Homesh Controller your token.
 		</div>
 		<div class="label">Pincode: </div>
 		<input class="value" type="text" max="9999" min="0000" step="1" pattern="[0-9]{4}" maxlength="4" minlength="4" ng-model="vars.pincode"/>
 
 		<button class="field" ng-click="mainForm.$valid && vars.pincode ? updatePincode() : null" ng-disabled="!mainForm.$valid || !vars.pincode">Update pincode</div>
 	</div>
-	<div class="field margin-top">
-		<div class="field">Token</div>
+	<div class="field margin-top">		
+		<div class="field margin-bottom">
+			Generating a new Token will require you to repair and reconnected your Controller.
+		</div>
+		<div class="field">Token:</div>
 		<div class="field break-all" ng-bind="vars.token"></div>
-		<button class="" ng-click="generateNewToken()" >Generate a new Token</div>
+		<button class="field" ng-click="generateNewToken()" >Generate a new Token</div>
 	</div>
 </form>
 
