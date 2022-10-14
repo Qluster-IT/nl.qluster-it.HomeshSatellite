@@ -3,6 +3,7 @@
 const Homey = require('homey');
 const { Defer, encrypt, generateKey } = require('./lib/proto');
 const _ = require('lodash-core');
+const UrlSoundConverterApp = require('./lib/MusicUrlConverter');
 
 class HominySatellite extends Homey.App {  
   static get lastName() { return this._lastName; }
@@ -74,7 +75,13 @@ class HominySatellite extends Homey.App {
     }
     //#endregion
 
+
+
+    this.urlSoundConverter = new UrlSoundConverterApp(this.homey);
     
+  }
+  async playUrl(url) {
+    return await this.urlSoundConverter.playUrl(url);
   }
 
   

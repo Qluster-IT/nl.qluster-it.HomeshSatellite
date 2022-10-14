@@ -9,6 +9,9 @@
     "@types/node": "^18.8.5"
   },
   "dependencies": {
-    "lodash-core": "^4.17.19"
+    "lodash-core": "^4.17.19",
+    "music-metadata": "^7.8.0",
+    "node-fetch": "^2.6.1",
+    "node-id3": "^0.2.2"
   }
 }

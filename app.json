@@ -41,6 +41,11 @@
       "method": "POST",
       "path": "/getFlowEventNames/",
       "public": true
+    },
+    "playUrl": {
+      "method": "POST",
+      "path": "/playUrl/",
+      "public": true
     }
   },
   "flow": {
