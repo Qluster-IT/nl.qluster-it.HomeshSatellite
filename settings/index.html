@@ -18,12 +18,18 @@
 ng-class="{'with-main-buttons':(view.id=='theflowexchanger' && view.subid=='theflowexchangertemplates') || editFunctionItem || editdeviceicon || setCustomIcon || setDeviceIcon || editcustomicon, 'with-top-bar':view.showMain, 'with-top-bar-small':view.subid=='theflowexchangertemplates' && !vars.template }">
 <form name="mainForm">
 	<div class="field">
+		<div class="field margin-bottom">
+			Here you will find you pincode and token.<br/>
+			The pincode is used during pairing only and will give the Controller this token.<br/>
+			Generating a new Token will require you to repair and reconnected your Controller.
+		</div>
 		<div class="label">Pincode: </div>
 		<input class="value" type="text" max="9999" min="0000" step="1" pattern="[0-9]{4}" maxlength="4" minlength="4" ng-model="vars.pincode"/>
 
 		<button class="field" ng-click="mainForm.$valid && vars.pincode ? updatePincode() : null" ng-disabled="!mainForm.$valid || !vars.pincode">Update pincode</div>
 	</div>
-	<div class="field">
+	<div class="field margin-top">
+		<div class="field">Token</div>
 		<div class="field break-all" ng-bind="vars.token"></div>
 		<button class="" ng-click="generateNewToken()" >Generate a new Token</div>
 	</div>

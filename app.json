@@ -36,6 +36,11 @@
       "method": "POST",
       "path": "/startflow/",
       "public": true
+    },
+    "getFlowEventNames": {
+      "method": "POST",
+      "path": "/getFlowEventNames/",
+      "public": true
     }
   },
   "flow": {
