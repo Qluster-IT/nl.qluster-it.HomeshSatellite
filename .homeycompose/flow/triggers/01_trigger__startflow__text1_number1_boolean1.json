@@ -10,11 +10,11 @@
     },
     "args": [
         {
-            "type": "autocomplete",
+            "type": "text",
             "name": "name",
             "placeholder": {
-                "en": "Type or select a trigger name",
-                "nl": "Type of kies een trigger naam"
+                "en": "Type a trigger name",
+                "nl": "Type een trigger naam"
             },
             "title": {
                 "en": "Triggername",
