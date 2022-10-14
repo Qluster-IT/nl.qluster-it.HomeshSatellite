@@ -1,3 +1,12 @@
+html {
+    padding-right:10px;
+}
+
+
+
+* {
+    box-sizing: border-box;
+}
 
 
 
@@ -12,18 +21,11 @@ h3 {
     font-size:1.1em;
 }
 
-.main-panel {    
-    /* margin-top: 60px; */
-    display: inline-block;
-    width: calc(100% - 10px);
-    /* overflow-y: auto; */
-    /* height: calc(100% - 60px); */
-    /* overflow-x: hidden; */
-}
-
-
 a {
     display: inline-block;
+}
+.break-all {
+    word-break: break-all;
 }
 
 .float-right {
@@ -63,303 +65,16 @@ a {
     border-bottom:1px solid grey;
 }
 
-#preview-outerframe {
-    display: none;
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
-    margin: 0 auto;
-    padding: 10px;
-}
-
-#preview-innerframe img {
-    width: 125px;
-    height: 125px;
-    padding: 20px;
-}
-
 input {
     border-radius: 3px;
 }
 
-#icons {
-    list-style: none;
-    margin-left: 0;
-}
-
-.icon {
-    position: relative;
-    border-bottom: 1px solid #eee;
-    height: 60px;
-}
-
-.icon:last-child {
-    border-bottom: none;
-}
-
-.icon .name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.icon .name {
-    position: absolute;
-    left: 50px;
-    top: 10px;
-    bottom: 10px;
-    font-size: 14px;
-    line-height: 40px;
-    font-weight: 400;
-}
-
-.icon input.name {
-    top: 15px;
-    bottom: 15px;
-    line-height: 20px;
-}
-
-.icon .buttons {
-    position: absolute;
-    right: 10px;
-    top: 16px;
-}
-
-.icon button {
-    float: left;
-    box-sizing: border-box;
-    margin-left: 5px;
-}
-
-.icon .image {
-    width: 30px;
-    height: 30px;
-    -webkit-mask-size: contain;
-    -webkit-mask-position: center center;
-    -webkit-mask-repeat: no-repeat;
-    background: #333;
-    position: absolute;
-    top: 16px;
-    left: 10px;
-}
-
-#defaultIcons .default-icon {
-    position: relative;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    display: inline-block;
-    width: 52px;
-    height: 52px;
-}
-
-#defaultIcons .default-icon .image {
-    width: 32px;
-    height: 32px;
-    -webkit-mask-size: contain;
-    -webkit-mask-position: center center;
-    -webkit-mask-repeat: no-repeat;
-    background: #333;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-
-
-
-#devices {
-    list-style: none;
-    margin-left: 0;
-}
-
-.device {
-    position: relative;
-    border-bottom: 1px solid #eee;
-    height: 60px;
-}
-
-.device:last-child {
-    border-bottom: none;
-}
-
-.device .name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.device .name {
-    position: relative;
-    left: 10px;
-    top: 10px;
-    bottom: 5px;
-    font-size: 14px;
-    line-height: 40px;
-    font-weight: 400;
-}
-
-.device input.name {
-    top: 15px;
-    bottom: 15px;
-    line-height: 20px;
-}
-
-.device .buttons {
-    /* display: inline-block; */
-    position: relative;
-    right: 10px;
-    top: 5px;
-    float: right;
-}
-
-.device button {
-    float: left;
-    box-sizing: border-box;
-    margin-left: 5px;
-}
-
-.device .image {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    -webkit-mask-size: contain;
-    -webkit-mask-position: center center;
-    -webkit-mask-repeat: no-repeat;
-    background: #333;
-    position: relative;
-    top: 5px;
-    left: 10px;
-}
-
-#editdevice {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-
-
-
-
-#customicons {
-    list-style: none;
-    margin-left: 0;
-}
-
-.customicon {
-    position: relative;
-    border-bottom: 1px solid #eee;
-    height: 60px;
-}
-
-.customicon:last-child {
-    border-bottom: none;
-}
-
-.customicon .name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.customicon .name {
-    position: absolute;
-    left: 50px;
-    top: 10px;
-    bottom: 10px;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
-    margin-top: 10px;
-}
-
-.customicon input.name {
-    top: 15px;
-    bottom: 15px;
-    line-height: 20px;
-}
-
-.customicon .buttons {
-    position: absolute;
-    right: 10px;
-    top: 16px;
-}
-
-.customicon button {
-    float: left;
-    box-sizing: border-box;
-    margin-left: 5px;
-}
-
-.customicon .image {
-    width: 30px;
-    height: 30px;
-    -webkit-mask-size: contain;
-    -webkit-mask-position: center center;
-    -webkit-mask-repeat: no-repeat;
-    background: #333;
-    position: absolute;
-    top: 16px;
-    left: 10px;
-}
-
-#editcustomicon {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-
-#preview {
-    width: 50px;
-    height: 50px;
-}
-
-.functions-table button {
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-    font-size: 12px !important;
-}
 
 [ng-click^="show"],
 [ng-click^="view"],
 [ng-click] {
     cursor: pointer;
     /* margin-top: 30px; */
-}
-
-#theflowexchanger {}
-
-#theflowexchanger ul {
-    height: 40vw;
-    overflow-y: scroll;
-    list-style: none;
-    margin-left: 0;
-    overflow-x: hidden;
-    white-space: nowrap;
-}
-
-#theflowexchanger ul .checkbox {
-    cursor: pointer;
-    /* display: inline; */
-}
-
-#theflowexchanger ul li {
-    height: 30px;
-}
-
-#theflowexchanger ul .name {
-    display: inline;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-
-.top-labels {
-    position: relative;
-    margin-bottom: 10px;
-}
-
-h1.top-labels {
-    margin-bottom: 20px;
 }
 
 .group {
@@ -391,10 +106,6 @@ h1.top-labels {
 .group.odd input[type="text"],
 .group.odd select {
     background-color: white;
-}
-
-.group.last {
-    /* box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; */
 }
 
 
@@ -609,43 +320,6 @@ h1.top-labels {
 }
 
 
-.main-view {
-    /* height: calc(100% - 70px);
-    position: fixed;*/
-    
-    padding-right: 10px;
-    width:100%;
-    
-}
-.non-setting-view .main-view {
-    overflow: auto; 
-}
-.non-setting-view .top {
-    overflow:auto;
-    height: calc(100% - 32px);
-    margin-top: 32px;
-}
-
-.setting-group {
-    margin-bottom: 10px;
-}
-
-.remove-icon {
-    color: black;
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    position: absolute;
-    right: 10px;
-    /* border: 1px solid black;
-    border-radius: 3px; */
-    font-size: 24px;
-    /* color: black; */
-    padding-top: 2px;
-    padding-left: 4px;
-    top: -10px;
-}
-
 .text-center {
     text-align: center;
 }
@@ -673,11 +347,6 @@ select {
     padding: 5px;
 }
 
-/* @media (hover: none), (pointer: coarse) {
-body {
-    cursor: pointer;
-} */
-
 .tooltip {
     /* display: block!important; */
     position: absolute;
@@ -700,54 +369,16 @@ body {
 
 
 
-.custom-icon {
-    height:24px;
-    width:24px;
-    position: absolute;
-}
-.custom-icon + * {
-    position: relative;
-    left:30px;
-}
-
 .pointer {
     cursor: pointer;
-}
-
-.link,
-alinky,
-[ng-click^="openUrl"] {
-    font-weight: 500;
-    text-decoration: underline;
-    cursor: pointer;
-    display: inline-block;
 }
 
 .inline-block {
     display: inline-block !important;
 }
 
-.template-panel {
-    position: relative;
-    display: inline-block;
-    height:100%;
-    width:100%;
-
-}
-
-/* .template-panel>.content {
-    height: calc(100% - 60px);
-    overflow: scroll;
-} */
 
 .panel {
-    /* height: calc(100% - 70px);
-    overflow: auto;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    background-color: white; */
-    /* overflow: auto; */
     margin-bottom: 10px;
     height: auto;
     position: relative;
@@ -806,33 +437,8 @@ alinky,
     color: #0066A4;
 }
 
-form {
-    height:100%;
-    /* top: 0px;
-    position: absolute;
-    width: 100%; */
-}
-/* form.top {
-    top: 0px;
-    position: absolute;
-    width: 100%;
-} */
-form.top {
-    height:100%;
-    position: relative;
-}
 .padding-left {
     padding-left: 10px;
-}
-
-.template-row>.fa-icon {
-    position: absolute;
-}
-
-.template-row>.link {
-    left: 30px;
-    position: relative;
-    width: calc(100% - 30px);
 }
 
 

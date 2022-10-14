@@ -29,10 +29,7 @@ class HominySatellite extends Homey.App {
           break;
         case "token":
             this.token = await this.homey.settings.get('token');
-            if(!this.token || this.token=='') {
-              await this.generateAndSetToken();
-            }
-            
+            if(!this.token || this.token=='') await this.generateAndSetToken();            
             break;
         default:
           break;

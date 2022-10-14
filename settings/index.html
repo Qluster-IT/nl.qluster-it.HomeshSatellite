@@ -17,43 +17,83 @@
 <body ng-app="hominysatellite" ng-controller="hominysatelliteCtrl as hominysatellite"
 ng-class="{'with-main-buttons':(view.id=='theflowexchanger' && view.subid=='theflowexchangertemplates') || editFunctionItem || editdeviceicon || setCustomIcon || setDeviceIcon || editcustomicon, 'with-top-bar':view.showMain, 'with-top-bar-small':view.subid=='theflowexchangertemplates' && !vars.template }">
 <form name="mainForm">
-	<div>
-		<input type="text" max="9999" min="0000" step="1" pattern="[0-9]{4}" maxlength="4" minlength="4" ng-model="vars.pincode"/>
-		<button class="block" ng-click="mainForm.$valid ? updatePincode() : null" ng-disabled="!mainForm.$valid">Update pincode</div>
+	<div class="field">
+		<div class="label">Pincode: </div>
+		<input class="value" type="text" max="9999" min="0000" step="1" pattern="[0-9]{4}" maxlength="4" minlength="4" ng-model="vars.pincode"/>
+
+		<button class="field" ng-click="mainForm.$valid && vars.pincode ? updatePincode() : null" ng-disabled="!mainForm.$valid || !vars.pincode">Update pincode</div>
 	</div>
-	<!-- <div>		
-		<button ng-click="updatePincode()" >Generate new Keys</div>
-	</div> -->
+	<div class="field">
+		<div class="field break-all" ng-bind="vars.token"></div>
+		<button class="" ng-click="generateNewToken()" >Generate a new Token</div>
+	</div>
 </form>
 
 <div id="overlay"></div>
 	<script type="text/javascript">
 
 		angular.module('hominysatellite', ['smart-table'])
-			.controller("hominysatelliteCtrl", ['$scope', '$rootScope', '$timeout', '$compile', function ($scope, $rootScope, $timeout, $compile) {
+			.controller("hominysatelliteCtrl", ['$scope', '$rootScope', '$timeout', '$compile', '$q', function ($scope, $rootScope, $timeout, $compile, $q) {
 				//let $;
 				var Homey;
-				const vars = $scope.vars = {pincode:undefined};
+				const vars = $scope.vars = {pincode:undefined, token:undefined};
 				$scope.stamp = Date.now();
 
 
 				$scope.$on('ready', function ($e, Homey_) {
+					let promises = [];
+					
 					Homey = Homey_;
 					$scope.__ = Homey.__;
+					promises.push(get('pincode', (pincode)=> vars.pincode=pincode));
+					promises.push(get('token', (token)=> vars.token=token));
 
+					Homey.on('settings.set', (key, val)=> {
+						switch (key) {
+							case "token":
+								get('token', (token)=> vars.token=token)
+								break;
+						}
 
-					Homey.ready();
-					Homey.get('pincode', (err, pincode)=> {
-						if(err) return Homey.alert(err);
-						$scope.$apply(()=> {
-							vars.pincode = pincode;
-						});
 					})
+
+					Promise.all(promises)
+					.then(()=>{})
+					.catch((err)=>{						
+						return Homey.alert(err);
+					})
+					.finally(()=>{						
+						Homey.ready();
+					})
+					
+				
+					// $scope.$apply(()=> {
+					// 	vars.token = 'asdasdasd';
+					// });
 
 				});
 
 				$scope.updatePincode = function() {
 					Homey.set('pincode', vars.pincode.toString() );
+				}
+
+				$scope.generateNewToken = function() {
+					Homey.set('token', null );
+				}
+
+				async function get(settingKey, fc) {
+					let defer = $q.defer();
+					Homey.get(settingKey, (err, val)=> {
+						if(err) {
+							defer.reject(err);
+							return Homey.alert(err);
+						}
+						$scope.$apply(()=> {
+							if(fc) fc(val);
+							defer.resolve(val);
+						});
+					})
+					return defer.promise;
 				}
 
 			}])			
