@@ -37,9 +37,32 @@ module.exports = {
             if(!validateToken(homey, token)) throw new Error('Unauthorized');
             return homey.speechOutput.say(text);
         } catch (error) { handleError(this, 'playUrl error: ', error); }
+    },
+    async getSoundboards({ homey,  body: { token, text } }) {
+        try {            
+            if(!validateToken(homey, token)) throw new Error('Unauthorized');
+            const soundboardApp = getSoundboardApp(homey);
+            const r = await soundboardApp.get('/');
+            return r;
+
+        } catch (error) { handleError(this, 'playUrl error: ', error); }
+    },    
+    async playSoundboard({ homey,  body: { token, file } }) {
+        try {            
+            if(!validateToken(homey, token)) throw new Error('Unauthorized');
+            const soundboardApp = getSoundboardApp(homey);
+            const r = await soundboardApp.post('/'+file.id+'/play');
+            return r;
+
+        } catch (error) { handleError(this, 'playUrl error: ', error); }
     }
     
 };
+
+function getSoundboardApp(homey) {
+    if(!homey.app.soundboardApp) homey.app.soundboardApp = homey.api.getApiApp('com.athom.soundboard');
+    return homey.app.soundboardApp;
+}
 
 function handleError(_this, id, error) {
     console.log('getFlowEventNames error: ');

@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.HomeshSatellite",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
@@ -15,7 +15,7 @@
   "category": [
     "appliances"
   ],
-  "permissions": [],
+  "permissions": ["homey:app:com.athom.soundboard"],
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",
@@ -44,6 +44,16 @@
     "playUrl": {
       "method": "POST",
       "path": "/playUrl/",
+      "public": true
+    },
+    "getSoundboards": {
+      "method": "POST",
+      "path": "/getSoundboards/",
+      "public": true
+    },
+    "playSoundboard": {
+      "method": "POST",
+      "path": "/playSoundboard/",
       "public": true
     }
   },
