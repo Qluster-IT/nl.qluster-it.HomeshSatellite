@@ -19,8 +19,14 @@ module.exports = {
         if(!validateToken(homey, token)) throw new Error('Unauthorized');
     },
     async getFlowEventNames({ homey,  body: { token, query } }) {
-        if(!validateToken(homey, token)) throw new Error('Unauthorized');
-        return await Object.keys(_.filter(homey.app.triggers, (t,key)=>!query || query=='' || key.toLowerCase().indexOf(query.toLowerCase())).events);
+        try {
+            
+            if(!validateToken(homey, token)) throw new Error('Unauthorized');
+            return _.filter(_.first(homey.app.triggers).events, (t,key)=>!query || query=='' || key.toLowerCase().indexOf(query.toLowerCase())).map(x=>{return {name:x.name};});
+        } catch (error) {
+            this.error('getFlowEventNames error: ');
+            this.error(error);
+        }
     }
     
 };
