@@ -1,3 +1,3 @@
-# BlackWhole Satellite
+# Homesh Satellite
 
-Satellite App to the BlackWhole Controller
+Satellite App to the Homesh Controller

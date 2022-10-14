@@ -1,6 +1,6 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
-  "id": "nl.qluster-it.BlackWholeSatellite",
+  "id": "nl.qluster-it.HomeshSatellite",
   "version": "0.0.3",
   "compatibility": ">=5.0.0",
   "sdk": 3,
@@ -8,17 +8,15 @@
     "local"
   ],
   "name": {
-    "en": "BlackWhole Satellite"
+    "en": "Homesh (Satellite)"
   },
   "description": {
-    "en": "Let's you control this Homey by a(nother) BlackWhole Controller"
+    "en": "Let's you control this Homey by another Homey"
   },
   "category": [
     "appliances"
   ],
-  "permissions": [
-    "homey:manager:speech-output"
-  ],
+  "permissions": [],
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",
@@ -48,13 +46,9 @@
       "method": "POST",
       "path": "/playUrl/",
       "public": true
-    },
-    "sayAthom": {
-      "method": "POST",
-      "path": "/sayAthom/",
-      "public": true
     }
   },
+  "brandColor": "#0066a4",
   "flow": {
     "triggers": [
       {

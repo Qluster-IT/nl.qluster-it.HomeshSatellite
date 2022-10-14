@@ -1,5 +1,5 @@
 {
-  "id": "nl.qluster-it.BlackWholeSatellite",
+  "id": "nl.qluster-it.HomeshSatellite",
   "version": "0.0.3",
   "compatibility": ">=5.0.0",
   "sdk": 3,
@@ -7,7 +7,7 @@
     "local"
   ],
   "name": {
-    "en": "BlackWhole (Satellite)"
+    "en": "Homesh (Satellite)"
   },
   "description": {
     "en": "Let's you control this Homey by another Homey"

@@ -5,7 +5,7 @@ const { Defer, encrypt, generateKey } = require('./lib/proto');
 const _ = require('lodash-core');
 const UrlSoundConverterApp = require('./lib/MusicUrlConverter');
 
-class BlackWholeSatellite extends Homey.App {  
+class HomeshSatellite extends Homey.App {  
   static get lastName() { return this._lastName; }
   static set lastName(value) { this._lastName = value; }
 
@@ -17,7 +17,7 @@ class BlackWholeSatellite extends Homey.App {
     this.uniqueId = 0;
 
     
-    this.log('BlackWholeSatellite App has been initialized');
+    this.log('HomeshSatellite App has been initialized');
     
     if (process.env.DEBUG === '1') require('inspector').open(9224, '0.0.0.0', true);
 
@@ -138,4 +138,4 @@ class BlackWholeSatellite extends Homey.App {
 
 }
 
-module.exports = BlackWholeSatellite;
+module.exports = HomeshSatellite;
