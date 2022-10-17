@@ -15,7 +15,9 @@
   "category": [
     "appliances"
   ],
-  "permissions": ["homey:app:com.athom.soundboard", "homey:app:openmindnl.ledcollection"],
+  "permissions": [
+    "homey:app:com.athom.soundboard"
+  ],
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",
@@ -25,16 +27,6 @@
     "name": "Arie J. Godschalk",
     "email": "arie@qluster-it.nl"
   },
-  "brandColor": "#0066a4",
-  "screensavers": [
-    {
-      "name": "main",
-      "title": {
-        "en": "Controlled by Homesh",
-        "nl": "Door Homesh beheerd"
-      }
-    }
-  ],
   "api": {
     "getAuthorization": {
       "method": "POST",
@@ -81,5 +73,6 @@
       "path": "/setScreensaver/",
       "public": true
     }
-  }
+  },
+  "brandColor": "#0066a4"
 }
