@@ -4,9 +4,6 @@ const Homey = require('homey');
 const _ = require('lodash-core');
 
 module.exports = {
-    // async getAdvancedFlows({ homey, query }) {
-    //     return await homey.drivers.getDriver('virtualdevice').getAdvancedFlows({ homey,  query });
-    // },   
     async getAuthorization({ homey,  body: { pincode } }) {
         if(homey.app.pincode === pincode) return {token:homey.app.token};
         console.log('pincode: ');//return await homey.drivers.getDriver('virtualdevice').getAdvancedFlowsJSON({ homey,  advancedflowsselected });
@@ -45,7 +42,7 @@ module.exports = {
             const r = await soundboardApp.get('/');
             return r;
 
-        } catch (error) { handleError(this, 'playUrl error: ', error); }
+        } catch (error) { handleError(this, 'getSoundboards error: ', error); }
     },    
     async playSoundboard({ homey,  body: { token, file } }) {
         try {            
@@ -54,7 +51,7 @@ module.exports = {
             const r = await soundboardApp.post('/'+file.id+'/play');
             return r;
 
-        } catch (error) { handleError(this, 'playUrl error: ', error); }
+        } catch (error) { handleError(this, 'playSoundboard error: ', error); }
     }
     
 };
