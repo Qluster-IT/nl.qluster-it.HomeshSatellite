@@ -38,7 +38,7 @@ module.exports = {
     async getSoundboards({ homey,  body: { token, text } }) {
         try {            
             if(!validateToken(homey, token)) throw new Error('Unauthorized');
-            const soundboardApp = await getApp('com.athom.soundboard', homey);
+            const soundboardApp = await getApp(homey, 'com.athom.soundboard', 'Soundboard');
             const r = await soundboardApp.get('/');
             return r;
 
@@ -47,7 +47,7 @@ module.exports = {
     async playSoundboard({ homey,  body: { token, file } }) {
         try {            
             if(!validateToken(homey, token)) throw new Error('Unauthorized');
-            const soundboardApp = await getApp('com.athom.soundboard', homey);
+            const soundboardApp = await getApp(homey, 'com.athom.soundboard', 'Soundboard');
             const r = await soundboardApp.post('/'+file.id+'/play');
             return r;
 
@@ -59,7 +59,7 @@ module.exports = {
             let ledCollectionArray = [];
             let ledItBeArray = [];
             try {             
-                const ledCollectionApp = await getApp('openmindnl.ledcollection', homey);
+                const ledCollectionApp = await getApp(homey, 'openmindnl.ledcollection', 'Led Collection');
                 ledCollectionArray = await ledCollectionApp.get('/screensavers/');   
                 ledCollectionArray = ledCollectionArray.map(x=>{return{id:x.id, uri:'homey:app:openmindnl.ledcollection', name:x.name};});
             } catch (error) {
@@ -77,7 +77,7 @@ module.exports = {
 
             switch (screensaver.uri) {
                 case 'homey:app:openmindnl.ledcollection':
-                    const ledCollectionApp = await getApp('openmindnl.ledcollection', homey);
+                    const ledCollectionApp = await getApp(homey, 'openmindnl.ledcollection', 'Led Collection');
                     return await ledCollectionApp.post('/screensaver/' + screensaver.id);
                 // case 'homey:app:nl.fellownet.leditbe':
                 //     const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
@@ -90,15 +90,11 @@ module.exports = {
     
 };
 
-async function getApp(appId, homey) {
+async function getApp(homey, appId, appname) {
     if(!homey.app[appId]) homey.app[appId] = homey.api.getApiApp(appId);
-    if(!homey.app.soundboardApp) throw new Error('Soundboard not installed.');
-    else {
-
-        let a = await homey.app.soundboardApp.getInstalled();
-        let b = a;
-
-    }
+    
+    if(!homey.app[appId]) throw new Error(appname + ' is not installed.');
+    else if(!await homey.app[appId].getInstalled()) throw new Error(appname + ' is not installed.');    
 
     return homey.app[appId];
 }
