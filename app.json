@@ -49,6 +49,11 @@
       "path": "/playUrl/",
       "public": true
     },
+    "sayAthom": {
+      "method": "POST",
+      "path": "/sayAthom/",
+      "public": true
+    },
     "getSoundboards": {
       "method": "POST",
       "path": "/getSoundboards/",
