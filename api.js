@@ -70,7 +70,7 @@ module.exports = {
 
             let r =ledCollectionArray;// _.join(ledCollectionArray, ledItBeArray);
             //let r = await homey.app.homeyAPI.ledring.getScreensavers();
-            return r.sort(x=>(x.uri==='homey:app:openmindnl.ledcollection' && x.id==='off'?'1' : '2') + x.title);
+            return r.sort(x=>(x.uri==='homey:app:openmindnl.ledcollection' && x.id==='led_solid_black'?'1' : '2') + x.title);
 
         } catch (error) { return handleError(this, 'getScreensavers error: ', error); }
     },
