@@ -38,7 +38,7 @@ module.exports = {
     async getSoundboards({ homey,  body: { token, text } }) {
         try {            
             if(!validateToken(homey, token)) throw new Error('Unauthorized');
-            const soundboardApp = getSoundboardApp(homey);
+            const soundboardApp = await getApp('com.athom.soundboard', homey);
             const r = await soundboardApp.get('/');
             return r;
 
@@ -47,7 +47,7 @@ module.exports = {
     async playSoundboard({ homey,  body: { token, file } }) {
         try {            
             if(!validateToken(homey, token)) throw new Error('Unauthorized');
-            const soundboardApp = getSoundboardApp(homey);
+            const soundboardApp = await getApp('com.athom.soundboard', homey);
             const r = await soundboardApp.post('/'+file.id+'/play');
             return r;
 
@@ -59,15 +59,12 @@ module.exports = {
             let ledCollectionArray = [];
             let ledItBeArray = [];
             try {             
-                const ledCollectionApp = getApp('openmindnl.ledcollection', homey);
+                const ledCollectionApp = await getApp('openmindnl.ledcollection', homey);
                 ledCollectionArray = await ledCollectionApp.get('/screensavers/');   
                 ledCollectionArray = ledCollectionArray.map(x=>{return{id:x.id, uri:'homey:app:openmindnl.ledcollection', name:x.name};});
             } catch (error) {
                 throw error;
              }
-            
-
-
             let r =ledCollectionArray;// _.join(ledCollectionArray, ledItBeArray);
             //let r = await homey.app.homeyAPI.ledring.getScreensavers();
             return r.sort(x=>(x.uri==='homey:app:openmindnl.ledcollection' && x.id==='led_solid_black'?'1' : '2') + x.title);
@@ -80,7 +77,7 @@ module.exports = {
 
             switch (screensaver.uri) {
                 case 'homey:app:openmindnl.ledcollection':
-                    const ledCollectionApp = getApp('openmindnl.ledcollection', homey);
+                    const ledCollectionApp = await getApp('openmindnl.ledcollection', homey);
                     return await ledCollectionApp.post('/screensaver/' + screensaver.id);
                 // case 'homey:app:nl.fellownet.leditbe':
                 //     const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
@@ -93,20 +90,23 @@ module.exports = {
     
 };
 
-function getSoundboardApp(homey) {
-    if(!homey.app.soundboardApp) homey.app.soundboardApp = homey.api.getApiApp('com.athom.soundboard');
-    return homey.app.soundboardApp;
-}
-
-function getApp(appId, homey) {
+async function getApp(appId, homey) {
     if(!homey.app[appId]) homey.app[appId] = homey.api.getApiApp(appId);
+    if(!homey.app.soundboardApp) throw new Error('Soundboard not installed.');
+    else {
+
+        let a = await homey.app.soundboardApp.getInstalled();
+        let b = a;
+
+    }
+
     return homey.app[appId];
 }
 
 function handleError(_this, id, error) {
     console.log('getFlowEventNames error: ');
     console.log(error);
-    return {__error__:error};
+    return {__error__:error.message||error};
 }
 function validateToken(homey, token) {
     return token === homey.app.token;

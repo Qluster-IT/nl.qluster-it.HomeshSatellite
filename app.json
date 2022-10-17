@@ -17,8 +17,7 @@
     "appliances"
   ],
   "permissions": [
-    "homey:app:com.athom.soundboard",
-    "homey:app:openmindnl.ledcollection"
+    "homey:app:com.athom.soundboard"
   ],
   "images": {
     "small": "/assets/images/small.png",
@@ -29,7 +28,6 @@
     "name": "Arie J. Godschalk",
     "email": "arie@qluster-it.nl"
   },
-  "brandColor": "#0066a4",
   "api": {
     "getAuthorization": {
       "method": "POST",
@@ -49,11 +47,6 @@
     "playUrl": {
       "method": "POST",
       "path": "/playUrl/",
-      "public": true
-    },
-    "sayAthom": {
-      "method": "POST",
-      "path": "/sayAthom/",
       "public": true
     },
     "getSoundboards": {
@@ -77,6 +70,7 @@
       "public": true
     }
   },
+  "brandColor": "#0066a4",
   "flow": {
     "triggers": [
       {
