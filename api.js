@@ -62,18 +62,15 @@ module.exports = {
                 const ledCollectionApp = getApp('openmindnl.ledcollection', homey);
                 ledCollectionArray = await ledCollectionApp.get('/screensavers/');   
                 ledCollectionArray = ledCollectionArray.map(x=>{return{id:x.id, uri:'homey:app:openmindnl.ledcollection', name:x.name};});
-            } catch (error) { }
+            } catch (error) {
+                throw error;
+             }
             
-            try {             
-                const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
-                ledItBeArray = await ledItBeApp.get('/screensavers/');   
-                ledItBeArray = ledItBeArray.map(x=>{return{id:x.id, uri:'homey:app:nl.fellownet.leditbe', name:x.name};});
-            } catch (error) { }
 
 
-            let r = _.join(ledCollectionArray, ledItBeArray);
+            let r =ledCollectionArray;// _.join(ledCollectionArray, ledItBeArray);
             //let r = await homey.app.homeyAPI.ledring.getScreensavers();
-            return r.sort(x=>(x.uri==='homey:app:openmindnl.ledcollection' && x.id==='off'?'1' : '2') + x.title);
+            return r.sort(x=>(x.uri==='homey:app:openmindnl.ledcollection' && x.id==='led_solid_black'?'1' : '2') + x.title);
 
         } catch (error) { return handleError(this, 'getScreensavers error: ', error); }
     },
@@ -85,9 +82,9 @@ module.exports = {
                 case 'homey:app:openmindnl.ledcollection':
                     const ledCollectionApp = getApp('openmindnl.ledcollection', homey);
                     return await ledCollectionApp.post('/screensaver/' + screensaver.id);
-                case 'homey:app:nl.fellownet.leditbe':
-                    const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
-                    return await ledItBeApp.post('/screensaver/' + screensaver.id);
+                // case 'homey:app:nl.fellownet.leditbe':
+                //     const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
+                //     return await ledItBeApp.post('/screensaver/' + screensaver.id);
                 default:
                     break;
             }
