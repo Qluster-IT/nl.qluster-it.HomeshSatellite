@@ -4,6 +4,8 @@ const Homey = require('homey');
 const { Defer, encrypt, generateKey } = require('./lib/proto');
 const _ = require('lodash-core');
 const UrlSoundConverterApp = require('./lib/MusicUrlConverter');
+//const { HomeyAPI } = require('athom-api');
+
 
 class HomeshSatellite extends Homey.App {  
   static get lastName() { return this._lastName; }
@@ -15,7 +17,8 @@ class HomeshSatellite extends Homey.App {
   async onInit() {    
     this.lastName = null;
     this.uniqueId = 0;
-
+    //this.homeyAPI = await HomeyAPI.forCurrentHomey(this.homey); // Refresh
+    
     
     this.log('HomeshSatellite App has been initialized');
     
