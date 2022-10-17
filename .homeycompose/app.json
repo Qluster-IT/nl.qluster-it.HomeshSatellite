@@ -15,7 +15,7 @@
   "category": [
     "appliances"
   ],
-  "permissions": ["homey:app:com.athom.soundboard", "homey:app:openmindnl.ledcollection", "homey:app:nl.fellownet.leditbe"],
+  "permissions": ["homey:app:com.athom.soundboard", "homey:app:openmindnl.ledcollection"],
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",

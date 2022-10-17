@@ -64,11 +64,11 @@ module.exports = {
                 ledCollectionArray = ledCollectionArray.map(x=>{return{id:x.id, uri:'homey:app:openmindnl.ledcollection', name:x.name};});
             } catch (error) { }
             
-            try {             
-                const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
-                ledItBeArray = await ledItBeApp.get('/screensavers/');   
-                ledItBeArray = ledItBeArray.map(x=>{return{id:x.id, uri:'homey:app:nl.fellownet.leditbe', name:x.name};});
-            } catch (error) { }
+            // try {             
+            //     const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
+            //     ledItBeArray = await ledItBeApp.get('/screensavers/');   
+            //     ledItBeArray = ledItBeArray.map(x=>{return{id:x.id, uri:'homey:app:nl.fellownet.leditbe', name:x.name};});
+            // } catch (error) { }
 
 
             let r = _.join(ledCollectionArray, ledItBeArray);
@@ -85,9 +85,9 @@ module.exports = {
                 case 'homey:app:openmindnl.ledcollection':
                     const ledCollectionApp = getApp('openmindnl.ledcollection', homey);
                     return await ledCollectionApp.post('/screensaver/' + screensaver.id);
-                case 'homey:app:nl.fellownet.leditbe':
-                    const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
-                    return await ledItBeApp.post('/screensaver/' + screensaver.id);
+                // case 'homey:app:nl.fellownet.leditbe':
+                //     const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
+                //     return await ledItBeApp.post('/screensaver/' + screensaver.id);
                 default:
                     break;
             }
