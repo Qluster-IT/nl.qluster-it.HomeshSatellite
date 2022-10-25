@@ -3,13 +3,19 @@
 const Homey = require('homey');
 const _ = require('lodash-core');
 
-module.exports = {
+module.exports = {        
     async getAuthorization({ homey,  body: { pincode } }) {
         if(homey.app.pincode === pincode) return {token:homey.app.token};
         console.log('pincode: ');//return await homey.drivers.getDriver('virtualdevice').getAdvancedFlowsJSON({ homey,  advancedflowsselected });
         console.log(pincode);
 
         return false;
+    },
+
+
+    // Publics
+    async isOnline({ homey }) {
+        return true;
     },
     async startFlow({ homey,  body: { token, name, text1, number1, boolean1 } }) {
         try {            
