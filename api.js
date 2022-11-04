@@ -65,7 +65,7 @@ module.exports = {
             let ledCollectionArray = [];
             let ledItBeArray = [];
             try {             
-                const ledCollectionApp = await getApp(homey, 'openmindnl.ledcollection', 'Led Collection');
+                const ledCollectionApp = await getApp(homey, 'openmindnl.ledcollection', 'LED-Ring Collection');
                 ledCollectionArray = await ledCollectionApp.get('/screensavers/');   
                 ledCollectionArray = ledCollectionArray.map(x=>{return{id:x.id, uri:'homey:app:openmindnl.ledcollection', name:x.name};});
             } catch (error) {
@@ -83,7 +83,7 @@ module.exports = {
 
             switch (screensaver.uri) {
                 case 'homey:app:openmindnl.ledcollection':
-                    const ledCollectionApp = await getApp(homey, 'openmindnl.ledcollection', 'Led Collection');
+                    const ledCollectionApp = await getApp(homey, 'openmindnl.ledcollection', 'LED-Ring Collection');
                     return await ledCollectionApp.post('/screensaver/' + screensaver.id);
                 // case 'homey:app:nl.fellownet.leditbe':
                 //     const ledItBeApp = getApp('nl.fellownet.leditbe', homey);
@@ -100,7 +100,7 @@ async function getApp(homey, appId, appname) {
     if(!homey.app[appId]) homey.app[appId] = homey.api.getApiApp(appId);
     
     if(!homey.app[appId]) throw new Error(appname + ' is not installed.');
-    else if(!await homey.app[appId].getInstalled()) throw new Error(appname + ' is not installed.');    
+    else if(!await homey.app[appId].getInstalled()) throw new Error(appname + ' is not installed.');
 
     return homey.app[appId];
 }
