@@ -4,5 +4,8 @@
   },
   "0.9.3": {
     "en": "Added: Contribution options: Patreon and GithubSponsors (with PayPal already available)."
+  },
+  "0.9.4": {
+    "en": "Improved: App reference names."
   }
 }
