@@ -1,6 +1,6 @@
 {
   "id": "nl.qluster-it.HomeshSatellite",
-  "version": "0.9.4",
+  "version": "0.9.7",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "platforms": [
