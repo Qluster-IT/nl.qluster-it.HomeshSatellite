@@ -21,8 +21,15 @@ class HomeshSatellite extends Homey.App {
     
     
     this.log('HomeshSatellite App has been initialized');
-    
-    if (process.env.DEBUG === '1') require('inspector').open(9224, '0.0.0.0', true);
+    if (process.env.DEBUG === '1' || false) {
+			try {
+				require('inspector').waitForDebugger();
+			}
+			catch (error) {
+				require('inspector').open(9205, '0.0.0.0', true);
+			}
+		}
+
 
 
     
@@ -64,7 +71,7 @@ class HomeshSatellite extends Homey.App {
 
       triggerCard.registerRunListener(async (args, state, more) => { //async
         //let s = 'trigger__startflow__text' + state.textCount + (state.numberCount ? '_number' + state.numberCount : '') + (state.booleanCount? '_boolean' + state.booleanCount : '');
-        return (trigger.id.startsWith('trigger__startflow__text' + state.textCount + (state.numberCount ? '_number' + state.numberCount : '') + (state.booleanCount? '_boolean' + state.booleanCount : '')) || args.overloadable == 'true');        
+        return state.name==args.name &&  (trigger.id.startsWith('trigger__startflow__text' + state.textCount + (state.numberCount ? '_number' + state.numberCount : '') + (state.booleanCount? '_boolean' + state.booleanCount : '')) || args.overloadable == 'true');        
       });
 
       triggerCard.on("update", async () => { await this.setTrigger(trigger); });

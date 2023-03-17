@@ -10,5 +10,8 @@
   },
   "0.9.7": {
     "en": "Improved: Works with Early 2023!"
+  },
+  "0.9.10": {
+    "en": "Bugfixed: Update Controller also."
   }
 }
