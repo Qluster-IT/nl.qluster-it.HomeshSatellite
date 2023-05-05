@@ -66,12 +66,13 @@ module.exports = {
             let ledItBeArray = [];
             try {             
                 const ledCollectionApp = await getApp(homey, 'openmindnl.ledcollection', 'LED-Ring Collection');
-                ledCollectionArray = await ledCollectionApp.get('/screensavers/');   
+                ledCollectionArray = await ledCollectionApp.get('/screensavers/');
                 ledCollectionArray = ledCollectionArray.map(x=>{return{id:x.id, uri:'homey:app:openmindnl.ledcollection', name:x.name};});
             } catch (error) {
                 throw error;
              }
             let r =ledCollectionArray;// _.join(ledCollectionArray, ledItBeArray);
+            //ledCollectionArray.unshift({uri:'homey:app:openmindnl.ledcollection', id:'led_solid_black', name:'Off' });
             //let r = await homey.app.homeyAPI.ledring.getScreensavers();
             return r.sort(x=>(x.uri==='homey:app:openmindnl.ledcollection' && x.id==='led_solid_black'?'1' : '2') + x.title);
 
