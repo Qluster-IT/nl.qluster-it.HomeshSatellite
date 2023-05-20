@@ -61,7 +61,9 @@ class HomeshSatellite extends Homey.App {
     
     //#region Triggercards Looper
     var triggers = this.triggers = [
-      { id: 'trigger__startflow__text1_number1_boolean1' }
+      { id: 'trigger__startflow__text1_number1_boolean1' },
+      { id: 'trigger__startflow__text5_number5_boolean5' },
+      { id: 'trigger__startflow__text10_number10_boolean10' }
     ];
     for (let i = 0; i < triggers.length; i++) {
       const trigger = triggers[i];

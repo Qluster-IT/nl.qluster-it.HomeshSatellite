@@ -17,16 +17,18 @@ module.exports = {
     async isOnline({ homey }) {
         return true;
     },
-    async startFlow({ homey,  body: { token, name, text1, number1, boolean1 } }) {
+    async startFlow({ homey,  body }) {
         try {            
-            if(!validateToken(homey, token)) throw new Error('Unauthorized');
-            return await homey.app.triggers[0].card.trigger({text1, number1, boolean1}, {name, textCount:1, numberCount:1, booleanCount:1});
+            homey.log(body);
+            if(!validateToken(homey, body.token)) throw new Error('Unauthorized');
+            let result = await _.find(homey.app.triggers, x=>x.id.endsWith('__'+body.targetName)).card.trigger(body, body);
+            return result;
         } catch (error) { return handleError(this, 'startFlow error: ', error); }
     },
-    async getFlowEventNames({ homey,  body: { token, query } }) {
+    async getFlowEventNames({ homey,  body: { token, query, targetName } }) {
         try {            
             if(!validateToken(homey, token)) throw new Error('Unauthorized');
-            return _.filter(_.first(homey.app.triggers).events, (t,key)=>!query || query=='' || key.toLowerCase().indexOf(query.toLowerCase())>-1).map(x=>{return {name:x.name};});
+            return _.filter(_.find(homey.app.triggers, x=>x.id.endsWith('__'+targetName)).events, (t,key)=>!query || query=='' || key.toLowerCase().indexOf(query.toLowerCase())>-1).map(x=>{return {name:x.name};});
         } catch (error) { return handleError(this, 'getFlowEventNames error: ', error); }
     },
     async playUrl({ homey,  body: { token, url } }) {
