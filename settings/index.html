@@ -33,6 +33,13 @@
 		<div class="field break-all" ng-bind="vars.token"></div>
 		<button class="field" ng-click="generateNewToken()" >Generate a new Token</div>
 	</div>
+
+	
+	<!-- <div class="field margin-top">		
+		<div class="field">Show Disabled Flows in the Lists:</div>
+		<input class="checkbox " type="checkbox" ng-model="vars.showDisabledFlownames" ng-change="setShowDisabledFlownames()"/>
+	</div> -->
+
 </form>
 
 <div id="overlay"></div>
@@ -53,6 +60,7 @@
 					$scope.__ = Homey.__;
 					promises.push(get('pincode', (pincode)=> vars.pincode=pincode));
 					promises.push(get('token', (token)=> vars.token=token));
+					// promises.push(get('showDisabledFlownames', (showDisabledFlownames)=> vars.showDisabledFlownames=showDisabledFlownames));
 
 					Homey.on('settings.set', (key, val)=> {
 						switch (key) {
@@ -73,10 +81,6 @@
 					})
 					
 				
-					// $scope.$apply(()=> {
-					// 	vars.token = 'asdasdasd';
-					// });
-
 				});
 
 				$scope.updatePincode = function() {
@@ -86,6 +90,10 @@
 				$scope.generateNewToken = function() {
 					Homey.set('token', null );
 				}
+
+				// $scope.setShowDisabledFlownames = function() {
+				// 	Homey.set('showDisabledFlownames', vars.showDisabledFlownames );
+				// }
 
 				async function get(settingKey, fc) {
 					let defer = $q.defer();
