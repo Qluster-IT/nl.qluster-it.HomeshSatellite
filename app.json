@@ -26,10 +26,10 @@
     "large": "/assets/images/large.png",
     "xlarge": "/assets/images/xlarge.png"
   },
-  "source": "https://github.com/Qluster-IT/nl.qluster-it.HomeshController/",
+  "source": "https://github.com/Qluster-IT/nl.qluster-it.HomeshSatellite/",
   "homepage": "https://github.com/Qluster-IT/nl.qluster-it.HomeshSatellite/wiki",
   "bugs": {
-    "url": "https://github.com/Qluster-IT/nl.qluster-it.HomeshController/issues"
+    "url": "https://github.com/Qluster-IT/nl.qluster-it.HomeshSatellite/issues"
   },
   "homeyCommunityTopicId": 70369,
   "contributing": {
@@ -41,7 +41,10 @@
         "username": "QlusterIT"
       },
       "githubSponsors": {
-        "username": "XeroxQ"
+        "username": "Qluster-IT"
+      },
+      "bunq": {
+        "username": "QlusterIT"
       }
     }
   },
